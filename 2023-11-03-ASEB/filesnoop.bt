@@ -1,0 +1,8 @@
+tracepoint:syscalls:sys_enter_openat /strcontains(str(args->filename), "cron")/
+{ 
+    printf("Cron related filename opened: %s\n", str(args->filename)); 
+}
+tracepoint:syscalls:sys_enter_openat /strcontains(str(args->filename), "/tmp/")/
+{
+    printf("Temporary file opened: %s\n", str(args->filename));
+}
